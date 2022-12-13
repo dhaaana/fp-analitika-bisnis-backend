@@ -1,5 +1,5 @@
+import os
 from fastapi import FastAPI, Form, File, UploadFile
-import random
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from diagnosis import diagnosis
@@ -40,6 +40,8 @@ async def create_upload_file(file: UploadFile = File(...)):
     finally:
         file.file.close()
         diag = diagnosis(file.filename)
+        if os.path.exists(file_name):
+            os.remove(file_name)  
     return {"message": f"Successfully uploaded {file_name}", "diagnosis": diag}
 
 
