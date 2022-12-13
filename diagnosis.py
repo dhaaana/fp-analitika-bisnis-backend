@@ -2,6 +2,7 @@ import keras
 import mahotas as mh
 import numpy as np
 from keras.models import model_from_json
+from imread import imread
 
 
 def diagnosis(file):
@@ -9,7 +10,7 @@ def diagnosis(file):
     IMM_SIZE = 224
     # Download image
     ##YOUR CODE GOES HERE##
-    image = mh.imread('images/' + file)
+    image = imread('images/' + file)
     
     # Prepare image to classification
     ##YOUR CODE GOES HERE##

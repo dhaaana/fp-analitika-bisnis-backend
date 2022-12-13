@@ -19,3 +19,4 @@ mahotas==1.4.13
 numpy==1.23.5
 tensorflow
 python-multipart
+imread
