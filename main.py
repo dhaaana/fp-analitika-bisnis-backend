@@ -31,17 +31,16 @@ class Msg(BaseModel):
 @app.post("/pneumonia")
 async def create_upload_file(file: UploadFile = File(...)):
     try:
-        file_name = 'images/' + file.filename 
         contents = file.file.read()
-        with open(file_name, 'wb') as f:
+        with open(file.filename, 'wb') as f:
             f.write(contents)
     except Exception:
         return {"message": "There was an error uploading the file"}
     finally:
         file.file.close()
         diag = diagnosis(file.filename)
-        if os.path.exists(file_name):
-            os.remove(file_name)  
-    return {"message": f"Successfully uploaded {file_name}", "diagnosis": diag}
+        if os.path.exists(file.filename):
+            os.remove(file.filename)  
+    return {"message": f"Successfully uploaded {file.filename}", "diagnosis": diag}
 
 

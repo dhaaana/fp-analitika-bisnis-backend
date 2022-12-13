@@ -10,7 +10,7 @@ def diagnosis(file):
     IMM_SIZE = 224
     # Download image
     ##YOUR CODE GOES HERE##
-    image = imread('./images/' + file)
+    image = imread(file)
     
     # Prepare image to classification
     ##YOUR CODE GOES HERE##
