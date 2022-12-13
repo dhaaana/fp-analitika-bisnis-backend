@@ -9,7 +9,7 @@ def diagnosis(file):
     IMM_SIZE = 224
     # Download image
     ##YOUR CODE GOES HERE##
-    image = mh.imread('./coba/' + file)
+    image = mh.imread('images/' + file)
     
     # Prepare image to classification
     ##YOUR CODE GOES HERE##
