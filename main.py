@@ -38,7 +38,22 @@ async def create_upload_file(file: UploadFile = File(...)):
         return {"message": "There was an error uploading the file"}
     finally:
         file.file.close()
-        diag = diagnosis(file.filename)
+        diag = diagnosis(file.filename, 'pneumonia')
+        if os.path.exists(file.filename):
+            os.remove(file.filename)  
+    return {"message": f"Successfully uploaded {file.filename}", "diagnosis": diag}
+
+@app.post("/tbc")
+async def create_upload_file(file: UploadFile = File(...)):
+    try:
+        contents = file.file.read()
+        with open(file.filename, 'wb') as f:
+            f.write(contents)
+    except Exception:
+        return {"message": "There was an error uploading the file"}
+    finally:
+        file.file.close()
+        diag = diagnosis(file.filename, 'tbc')
         if os.path.exists(file.filename):
             os.remove(file.filename)  
     return {"message": f"Successfully uploaded {file.filename}", "diagnosis": diag}

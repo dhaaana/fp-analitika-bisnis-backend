@@ -5,8 +5,10 @@ from keras.models import model_from_json
 from imread import imread
 
 
-def diagnosis(file):
-    lab = {'Normal': 0, 'Viral Pneumonia': 1, 'Covid': 2}
+def diagnosis(file, type):
+    json = 'model-tbc.json' if type == 'tbc' else 'model-pneumonia.json'
+    h5 = 'model-tbc.h5' if type == 'tbc' else 'model-pneumonia.h5'
+    lab = {'Normal' : 0, 'TBC': 1} if type == 'tbc' else {'Normal': 0, 'Viral Pneumonia': 1, 'Covid': 2}
     IMM_SIZE = 224
     # Download image
     ##YOUR CODE GOES HERE##
@@ -23,11 +25,11 @@ def diagnosis(file):
 
     # Load model  
     ##YOUR CODE GOES HERE##
-    json_file = open('model.json', 'r')
+    json_file = open(json, 'r')
     loaded_model_json = json_file.read()
     json_file.close()
     model = model_from_json(loaded_model_json)
-    model.load_weights("model.h5")
+    model.load_weights(h5)
 
     # Normalize the data
     ##YOUR CODE GOES HERE##
