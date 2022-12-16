@@ -15,8 +15,8 @@ uvloop==0.16.0
 watchfiles==0.16.1
 websockets==10.3
 keras
-mahotas==1.4.13
-numpy==1.23.5
+mahotas
+numpy
 tensorflow
 python-multipart
 imread
